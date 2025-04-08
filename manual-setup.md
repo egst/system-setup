@@ -18,22 +18,14 @@ Settings:
 
 ## Basic CLI Software
 
-```bash
-sudo apt update
-
-sudo apt install git
-sudo apt install make
-sudo apt install gcc
-sudo apt install tmux
-# Fuzzy finder:
-sudo apt install fzf
-# Better cat:
-sudo apt install bat
-# Better grep:
-sudo apt install ripgrep
-# Better find:
-sudo apt install fd-find
-```
+* git
+* make
+* gcc
+* tmux
+* fzf (fuzzy finder)
+* bat (better cat)
+* ripgrep (better gret)
+* fd-find (better fint)
 
 ## NVM, NodeJS, NPM
 
@@ -96,33 +88,20 @@ sudo nvim
 ### LSP
 
 ```bash
+# PHP Intelephense:
 npm install -g intelephense
+
+# TypeScript:
+npm install -g typescript typescript-language-server
+
+# ES Lint:
+npm i -g vscode-langservers-extracted
 ```
 
-## Bash Config
+## Dotfiles (bash, git, tmux)
 
-### Egsthe Config
-
-[egst/bash-config](https://github.com/egst/bash-config)
-
-```bash
-git clone https://github.com/egst/bash-config ~/.config/bash
-```
-
-```bash
-# Add to ~/.bashrc:
-source ~/.config/bash/general
-source ~/.config/bash/locations
-source ~/.config/bash/paths
-source ~/.config/bash/aliases
-source ~/.config/bash/fzf
-source ~/.config/bash/git
-
-# Add to ~/.profile:
-source ~/.config/bash/profile
-```
-
-TODO: Simplify this process.
+Dotfiles with basic configurations are provided in this repo in `dotfiles/`.
+Link them to the home directory manually.
 
 ## Nerd Font
 
@@ -130,8 +109,14 @@ TODO: Simplify this process.
 
 Good tried fonts:
 * Hasklug
+    * Ligatures
+* FantasqueSans
+    * Ligatures: Ligatures for >= and better ligature for ===.
 * FiraCode
+    * Ligatures
 * CascaydiaCove
+    * Ligatures
+* InconsolataGo
 
 ## Gnome Terminal
 
@@ -177,6 +162,8 @@ A fork of Alacrity that supports ligarures: [zenixls2/alacritty](https://github.
 ```bash
 sudo apt install cmake
 sudo apt install cargo
+sudo apt install pkg-config sudo apt install libfontconfig1-dev
+sudo apt install libxcb1-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev
 
 cd ~/Downloads
 git clone https://github.com/zenixls2/alacritty
@@ -190,6 +177,9 @@ sudo mv /usr/bin/alacritty /usr/bin/alacritty.bak
 
 sudo cp ./target/release/alacritty /usr/bin
 ```
+
+This form uses YAML instead of TOML for configuration.
+Copy `alacrity.toml` to `alacrity.yml`, convert to YAML and do the same for the needed theme files.
 
 ## Docker
 
@@ -231,6 +221,8 @@ Also, this will only work with a fixed built-in keyboard ID.
 Note: This doesn't work with Wayland.
 
 ## PHP (Optional)
+
+## TypeScript (Optional)
 
 ## TODO
 

@@ -1,0 +1,43 @@
+[user]
+    name  = Maximilian Kulikov
+    email = kulikov.maximilian@gmail.com
+[log]
+    date = iso-local
+[pull]
+    rebase = true
+[rebase]
+    autoStash         = true
+    instructionFormat = %s (%an)
+[color]
+    ui = true
+[core]
+    editor = nvim
+[diff]
+    tool = nvimdiff
+[merge]
+    tool = nvimdiff
+[init]
+	defaultBranch = master
+[filter "lfs"]
+    clean    = git-lfs clean -- %f
+    smudge   = git-lfs smudge -- %f
+    process  = git-lfs filter-process
+    required = true
+[alias]
+    skipit   = update-index --skip-worktree
+    keepit   = update-index --no-skip-worktree
+    skiplist = ! git ls-files -v | grep -e '^[Shsmrck]'
+    branchit = ! git rev-parse HEAD > /dev/null 2>&1 && git branch --all | grep -v HEAD | fzf | sed 's/.* //'
+    checkit  = ! git rev-parse HEAD > /dev/null 2>&1 && echo '🔀 Pick the branch:' && branch=$(git branchit) && [ -n "$branch" ] && ([ "$branch" = "${branch#remotes/}" ] && git checkout "$branch" || git checkout --track "$branch")
+    forgetit = ! git rev-parse HEAD > /dev/null 2>&1 && echo '🔀 Pick the branch:' && branch=$(git branchit) && [ -n "$branch" ] && git branch -d "$branch"
+    pushit   = ! git rev-parse HEAD > /dev/null 2>&1 && echo '🔀 Pick the branch:' && branch=$(git branchit) && [ -n "$branch" ] && git push origin "$branch"
+    branches = ! git for-each-ref --sort=-committerdate refs/heads --color=always --format='%(refname:short)|%(color:green)%(subject)|%(authorname)|%(committerdate:relative)%(color:reset)' | column -t -s'|'
+    changes  = diff-tree --no-commit-id --name-only -r HEAD
+    state    = ! echo '📜 Status: \n' && git status && echo '\n📋 Last commit:\n' && git last && echo '\n⌛ Recent history:\n' && git hist
+    unstage  = reset HEAD --
+    discard  = reset HEAD --hard
+    pushup   = push -u origin HEAD
+    last     = log -1 HEAD
+    hist     = log -n 8 --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+    squash   = rebase -i HEAD~${1}
+    history  = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
